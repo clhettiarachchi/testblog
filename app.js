@@ -3,11 +3,14 @@ const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
 const blogRoutes = require("./routes/blogRoutes")
+const PORT = process.env.PORT || 3000;
 
 // connect to mongodb
 const dbURI = 'mongodb+srv://chandika:chandika1994@nodetuts.eh9zl.mongodb.net/<node-tuts>?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-.then((result) => app.listen())
+.then((result) => app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});)
 .catch((err) => console.log(err));
 
 // register view engine
